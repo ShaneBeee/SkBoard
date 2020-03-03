@@ -2,3 +2,5 @@ main: tk.shanebee.skboard.SkBoard
 name: SkBoard
 version: '${project.version}'
 api-version: '1.13'
+softdepend:
+  - Skript
