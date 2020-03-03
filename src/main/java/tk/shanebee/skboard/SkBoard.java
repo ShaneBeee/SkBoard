@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import tk.shanebee.skboard.listener.PlayerListener;
+import tk.shanebee.skboard.metrics.Metrics;
 import tk.shanebee.skboard.objects.Board;
 
 import java.io.IOException;
@@ -47,6 +48,7 @@ public class SkBoard extends JavaPlugin {
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
+        new Metrics(this, 6673); // Startup metrics
         for (Player player : Bukkit.getOnlinePlayers()) { // if reload, load player boards
             Board.loadBoard(player);
         }
