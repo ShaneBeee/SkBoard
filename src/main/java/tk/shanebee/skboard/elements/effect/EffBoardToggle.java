@@ -1,6 +1,10 @@
 package tk.shanebee.skboard.elements.effect;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,6 +14,12 @@ import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 import tk.shanebee.skboard.objects.Board;
 
+@Name("Board - Toggle")
+@Description("Toggle the scoreboard of a player on or off.")
+@Examples({"if scoreboard of player is on:",
+        "\ttoggle scoreboard of player off", "",
+        "toggle scoreboards of all players off"})
+@Since("1.0.0")
 public class EffBoardToggle extends Effect {
 
     static {

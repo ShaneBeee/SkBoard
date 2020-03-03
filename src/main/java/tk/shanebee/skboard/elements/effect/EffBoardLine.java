@@ -1,7 +1,10 @@
 package tk.shanebee.skboard.elements.effect;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
 import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -11,6 +14,12 @@ import org.bukkit.event.Event;
 import tk.shanebee.skboard.objects.Board;
 
 @Name("Board - Line")
+@Description("set/delete a line in a player's scoreboard. Note: line 1 is bottom, line 15 is top.")
+@Examples({"set line 1 of player's scoreboard to \"oooo I'm a line!!\"",
+        "set line 15 of all player's scoreboards to \"I'm the top line!!!\"",
+        "delete line 3 of player's scoreboard",
+        "delete line 4 of all player's scoreboards"})
+@Since("1.0.0")
 public class EffBoardLine extends Effect {
 
     static {

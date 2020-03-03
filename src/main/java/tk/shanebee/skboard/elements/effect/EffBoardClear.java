@@ -1,6 +1,10 @@
 package tk.shanebee.skboard.elements.effect;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Effect;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,6 +14,11 @@ import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 import tk.shanebee.skboard.objects.Board;
 
+@Name("Board - Clear")
+@Description("Clear the scoreboard of a player")
+@Examples({"clear scoreboard of player",
+        "clear scoreboards of all players"})
+@Since("1.0.0")
 public class EffBoardClear extends Effect {
 
     static {

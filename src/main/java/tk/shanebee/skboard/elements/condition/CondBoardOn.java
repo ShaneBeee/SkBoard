@@ -1,6 +1,10 @@
 package tk.shanebee.skboard.elements.condition;
 
 import ch.njol.skript.Skript;
+import ch.njol.skript.doc.Description;
+import ch.njol.skript.doc.Examples;
+import ch.njol.skript.doc.Name;
+import ch.njol.skript.doc.Since;
 import ch.njol.skript.lang.Condition;
 import ch.njol.skript.lang.Expression;
 import ch.njol.skript.lang.SkriptParser;
@@ -10,6 +14,11 @@ import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 import tk.shanebee.skboard.objects.Board;
 
+@Name("Board - Is on")
+@Description("Check if a player's scoreboard is currently toggled on or off")
+@Examples({"if scoreboard of player is on:",
+        "\ttoggle scoreboard of player off"})
+@Since("1.0.0")
 public class CondBoardOn extends Condition {
 
     static {
