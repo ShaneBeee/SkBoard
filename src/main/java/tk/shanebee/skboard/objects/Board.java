@@ -1,5 +1,6 @@
 package tk.shanebee.skboard.objects;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -35,18 +36,23 @@ public class Board {
         BOARD_MAP.remove(player);
     }
 
+    public static void clearBoards() {
+        BOARD_MAP.clear();
+    }
+
     // OBJECT STUFF
     private final SkBoard plugin = SkBoard.getInstance();
     private final Player player;
     private final Scoreboard scoreboard;
     private final Objective board;
     private final Team line1, line2, line3, line4, line5, line6, line7, line8, line9, line10, line11, line12, line13, line14, line15;
+    private boolean on;
 
     @SuppressWarnings("ConstantConditions")
     public Board(Player player, boolean load) {
         this.player = player;
+        this.on = true;
         if (!load) {
-            SkBoard.getInstance().log("CREATING NEW BOARD");
             scoreboard = plugin.getServer().getScoreboardManager().getNewScoreboard();
             this.player.setScoreboard(scoreboard);
             board = scoreboard.registerNewObjective("Board", "dummy", "Board");
@@ -84,7 +90,6 @@ public class Board {
             line14.addEntry(getColString("&d"));
             line15.addEntry(getColString("&e"));
         } else {
-            SkBoard.getInstance().log("HAS BOARD");
             scoreboard = player.getScoreboard();
             board = scoreboard.getObjective("Board");
             line1 = scoreboard.getTeam("line1");
@@ -125,6 +130,20 @@ public class Board {
         for (int i = 1; i < 16; i++) {
             deleteLine(i);
         }
+    }
+
+    public void toggle(boolean on) {
+        if (on) {
+            player.setScoreboard(this.scoreboard);
+            this.on = true;
+        } else {
+            player.setScoreboard(this.plugin.getServer().getScoreboardManager().getNewScoreboard());
+            this.on = false;
+        }
+    }
+
+    public boolean isOn() {
+        return this.on;
     }
 
     private Team getLine(int line) {

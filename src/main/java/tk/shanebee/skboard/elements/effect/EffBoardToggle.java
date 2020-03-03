@@ -10,20 +10,22 @@ import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
 import tk.shanebee.skboard.objects.Board;
 
-public class EffBoardClear extends Effect {
+public class EffBoardToggle extends Effect {
 
     static {
-        Skript.registerEffect(EffBoardClear.class,
-                "clear %players%'[s] [score]board[s]",
-                "clear [score]board[s] of %players%");
+        Skript.registerEffect(EffBoardToggle.class,
+                "toggle [score]board[s] of %players% [to] (0¦on|1¦off)",
+                "toggle %players%'[s] [score]board[s] [to] (0¦on|1¦off)");
     }
 
     private Expression<Player> players;
+    private boolean on;
 
     @SuppressWarnings("unchecked")
     @Override
     public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         players = (Expression<Player>) exprs[0];
+        on = parseResult.mark != 1;
         return true;
     }
 
@@ -33,13 +35,13 @@ public class EffBoardClear extends Effect {
         for (Player player : players) {
             Board board = Board.getBoard(player);
             if (board == null) continue;
-            board.clearBoard();
+            board.toggle(this.on);
         }
     }
 
     @Override
     public String toString(@Nullable Event e, boolean d) {
-        return "clear scoreboard of " + this.players.toString(e, d);
+        return "toggle scoreboard of " + this.players.toString(e, d) + "to " + (this.on ? "on" : "off");
     }
 
 }
