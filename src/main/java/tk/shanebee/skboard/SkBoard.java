@@ -48,7 +48,7 @@ public class SkBoard extends JavaPlugin {
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
-        new Metrics(this, 6673); // Startup metrics
+        loadMetrics();
         for (Player player : Bukkit.getOnlinePlayers()) { // if reload, load player boards
             Board.loadBoard(player);
         }
@@ -57,6 +57,11 @@ public class SkBoard extends JavaPlugin {
     @Override
     public void onDisable() {
         Board.clearBoards();
+    }
+
+    private void loadMetrics() {
+        Metrics metrics = new Metrics(this, 6673);
+        metrics.addCustomChart(new Metrics.SimplePie("skript_version", () -> Skript.getVersion().toString()));
     }
 
     public static SkBoard getInstance() {
