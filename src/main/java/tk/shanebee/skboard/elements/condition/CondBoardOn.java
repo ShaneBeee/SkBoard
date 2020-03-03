@@ -33,6 +33,7 @@ public class CondBoardOn extends Condition {
     @Override
     public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         player = (Expression<Player>) exprs[0];
+        setNegated(i == 1);
         return true;
     }
 
@@ -41,14 +42,14 @@ public class CondBoardOn extends Condition {
         Player player = this.player.getSingle(event);
         if (player != null) {
             Board board = Board.getBoard(player);
-            return board.isOn();
+            return board.isOn() ^ isNegated();
         }
         return false;
     }
 
     @Override
     public String toString(@Nullable Event e, boolean d) {
-        return "scoreboard of " + this.player.toString(e, d) + " is on";
+        return "scoreboard of " + this.player.toString(e, d) + " is " + (isNegated() ? "off" : "on");
     }
 
 }
