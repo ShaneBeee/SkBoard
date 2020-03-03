@@ -61,7 +61,7 @@ public class SkBoard extends JavaPlugin {
         return instance;
     }
 
-    public void log(String message) {
+    private void log(String message) {
         String pre = "&7[&bSkBoard&7] &r";
         Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', pre + message));
     }
