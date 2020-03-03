@@ -4,9 +4,11 @@ import ch.njol.skript.Skript;
 import ch.njol.skript.SkriptAddon;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import tk.shanebee.skboard.listener.PlayerListener;
+import tk.shanebee.skboard.objects.Board;
 
 import java.io.IOException;
 
@@ -37,12 +39,15 @@ public class SkBoard extends JavaPlugin {
             log("&aSuccessfully enabled v" + desc.getVersion());
             if (desc.getVersion().contains("Beta")) {
                 log("&eThis is a BETA build, things may not work as expected, please report any bugs on GitHub");
-                //log("&ehttps://github.com/ShaneBeee/SkRecipe/issues");
+                log("&ehttps://github.com/ShaneBeee/SkRecipe/issues");
             }
             Bukkit.getPluginManager().registerEvents(new PlayerListener(), this);
         } else {
             log("&cDependency Skript was not found, plugin disabling");
             Bukkit.getPluginManager().disablePlugin(this);
+        }
+        for (Player player : Bukkit.getOnlinePlayers()) {
+            Board.loadBoard(player);
         }
     }
 
@@ -54,8 +59,9 @@ public class SkBoard extends JavaPlugin {
         return instance;
     }
 
-    private void log(String message) {
-        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+    public void log(String message) {
+        String pre = "&7[&bSkBoard&7] &r";
+        Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', pre + message));
     }
 
 }

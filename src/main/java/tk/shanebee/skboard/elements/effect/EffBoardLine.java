@@ -42,10 +42,14 @@ public class EffBoardLine extends Effect {
         int line = this.line.getSingle(event).intValue();
         if (line > 15 || line < 1) return; // Only set lines 1-15
 
-        String text = this.text.getSingle(event);
+        String text = "";
+        if (set) {
+            text = this.text.getSingle(event);
+        }
 
         for (Player player : players) {
             Board board = Board.getBoard(player);
+            if (board == null) continue;
             if (set)
                 board.setLine(line, text);
             else
