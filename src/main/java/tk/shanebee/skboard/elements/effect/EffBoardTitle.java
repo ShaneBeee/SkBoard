@@ -23,7 +23,7 @@ public class EffBoardTitle extends Effect {
 
     static {
         Skript.registerEffect(EffBoardTitle.class,
-                "set title of %players%'s [score]board[s] to %string%");
+                "set title of %players%'[s] [score]board[s] to %string%");
     }
 
     private Expression<Player> players;

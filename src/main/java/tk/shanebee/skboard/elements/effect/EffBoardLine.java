@@ -24,8 +24,8 @@ public class EffBoardLine extends Effect {
 
     static {
         Skript.registerEffect(EffBoardLine.class,
-                "set line %number% of %players%'s [score]board[s] to %string%",
-                "delete line %number% of %players%'s [score]board[s]");
+                "set line %number% of %players%'[s] [score]board[s] to %string%",
+                "delete line %number% of %players%'[s] [score]board[s]");
     }
 
     private Expression<Number> line;
