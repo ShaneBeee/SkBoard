@@ -17,14 +17,17 @@ import tk.shanebee.skboard.objects.Board;
 @Name("Board - Is on")
 @Description("Check if a player's scoreboard is currently toggled on or off")
 @Examples({"if scoreboard of player is on:",
-        "\ttoggle scoreboard of player off"})
+        "\ttoggle scoreboard of player off",
+        "if scoreboard of player is off:",
+        "\ttoggle scoreboard of player on"})
 @Since("1.0.0")
 public class CondBoardOn extends Condition {
 
     static {
         Skript.registerCondition(CondBoardOn.class,
-                "scoreboard of %player% is on",
-                "scoreboard of %player% is(n't| not) on");
+                "[score]board of %player% is (on|true)",
+                "[score]board of %player% is(n't| not) on",
+                "[score]board of %player% is (off|false)");
     }
 
     private Expression<Player> player;
@@ -33,7 +36,7 @@ public class CondBoardOn extends Condition {
     @Override
     public boolean init(Expression<?>[] exprs, int i, Kleenean kleenean, SkriptParser.ParseResult parseResult) {
         player = (Expression<Player>) exprs[0];
-        setNegated(i == 1);
+        setNegated(i >= 1);
         return true;
     }
 
