@@ -1,5 +1,14 @@
 # SkBoard
 
+**IMPORTANT**
+SkBoard is now deprecated. It has been merged into my new addon [**SkBee**](https://github.com/ShaneBeee/SkBee).  
+This plugin will no longer recieve updates or support. Please upgrade to SkBee.
+.   
+.   
+.   
+.   
+.    
+
 **SkBoard** is a simple, non-flickering scoreboard.   
 It's the easiest Skript scoreboard addon you will EVER use! I mean it. NO.... seriously!
 
